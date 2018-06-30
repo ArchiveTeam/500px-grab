@@ -21,7 +21,7 @@ Running without a warrior
 -------------------------
 To run this outside the warrior you first need to install Flex, Bison, and OpenSSL headers, if they are not installed already. On Debian/Ubuntu, you can do it with this command:
 
-    sudo apt-get install python-pip git build-essential liblua5.1-dev flex bison libgnutls-openssl-dev
+    sudo apt-get install python-pip git build-essential liblua5.1-dev flex bison libgnutls-openssl-dev autoconf python-setuptools
     
 Then clone this repository, cd into its directory and run:
 
@@ -30,7 +30,7 @@ Then clone this repository, cd into its directory and run:
 
 then start downloading with:
 
-    run-pipeline pipeline.py --concurrent 2 YOURNICKHERE
+    run-pipeline pipeline.py --concurrent 1 YOURNICKHERE
 
 For more options, run:
 
