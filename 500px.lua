@@ -115,6 +115,16 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
   if allowed(url, nil)
       or string.match(url, "^https?://[^/]*500px%.com/photo/[0-9]+")  then
     html = read_file(file)
+    if item_type == "all"
+        and string.match(url, "^https?://[^/]*500px%.com/photo/[0-9]+") then
+      if not string.match(html, "href='https://creativecommons.org/") then
+        return
+      else
+        local id = string.match(url, "^https?://[^/]*500px%.com/photo/([0-9]+)")
+        table.insert(urls, { url="https://api.500px.com/v1/photos/" .. id .. "/comments?sort=created_at&include_subscription=1&include_flagged=1&nested=1&page=1&rpp=30" })
+        table.insert(urls, { url="https://api.500px.com/v1/photos?image_size%5B%5D=1&image_size%5B%5D=2&image_size%5B%5D=32&image_size%5B%5D=31&image_size%5B%5D=33&image_size%5B%5D=34&image_size%5B%5D=35&image_size%5B%5D=36&image_size%5B%5D=2048&image_size%5B%5D=4&image_size%5B%5D=14&expanded_user_info=true&include_tags=true&include_geo=true&include_equipment_info=true&include_licensing=true&include_releases=true&liked_by=1&following_sample=100&ids=" .. id })
+      end
+    end
     for newurl in string.gmatch(html, '([^"]+)') do
       checknewurl(newurl)
     end

@@ -58,7 +58,7 @@ if not WGET_LUA:
 #
 # Update this each time you make a non-cosmetic change.
 # It will be added to the WARC files and reported to the tracker.
-VERSION = '20180629.03'
+VERSION = '20180630.01'
 USER_AGENT = 'ArchiveTeam'
 TRACKER_ID = '500px'
 TRACKER_HOST = 'tracker.archiveteam.org'
@@ -201,6 +201,11 @@ class WgetArgs(object):
                 wget_args.append('https://api.500px.com/v1/photos/{}/comments?sort=created_at&include_subscription=1&include_flagged=1&nested=1&page=1&rpp=30'.format(id_))
                 wget_args.append('https://api.500px.com/v1/photos?image_size%5B%5D=1&image_size%5B%5D=2&image_size%5B%5D=32&image_size%5B%5D=31&image_size%5B%5D=33&image_size%5B%5D=34&image_size%5B%5D=35&image_size%5B%5D=36&image_size%5B%5D=2048&image_size%5B%5D=4&image_size%5B%5D=14&expanded_user_info=true&include_tags=true&include_geo=true&include_equipment_info=true&include_licensing=true&include_releases=true&liked_by=1&following_sample=100&ids={}'.format(id_))
                 #wget_args.append('https://api.500px.com/v1/photos/{}/navigation?from=user&formats=jpeg%2Clytro&image_size%5B%5D=1&image_size%5B%5D=2&image_size%5B%5D=32&image_size%5B%5D=31&image_size%5B%5D=33&image_size%5B%5D=34&image_size%5B%5D=35&image_size%5B%5D=36&image_size%5B%5D=2048&image_size%5B%5D=4&image_size%5B%5D=14'.format(id_))
+        elif item_type == 'all':
+            start, end = item_value.split('-')
+            for id_ in range(int(start), int(end)+1):
+                wget_args.extend(['--warc-header', '500px-photo: {}'.format(id_)])
+                wget_args.append('https://500px.com/photo/{}'.format(id_))
         else:
             raise Exception('Unknown item')
 
