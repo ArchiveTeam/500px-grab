@@ -30,7 +30,7 @@ Then clone this repository, cd into its directory and run:
 
 then start downloading with:
 
-    run-pipeline pipeline.py --concurrent 2 YOURNICKHERE
+    run-pipeline pipeline.py --concurrent 1 YOURNICKHERE
 
 For more options, run:
 
