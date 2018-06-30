@@ -19,7 +19,11 @@ Follow the [instructions on the ArchiveTeam wiki](http://archiveteam.org/index.p
 
 Running without a warrior
 -------------------------
-To run this outside the warrior, clone this repository, cd into its directory and run:
+To run this outside the warrior you first need to install Flex, Bison, and OpenSSL headers, if they are not installed already. On Debian/Ubuntu, you can do it with this command:
+
+    sudo apt-get install python-pip git build-essential liblua5.1-dev flex bison libgnutls-openssl-dev
+    
+Then clone this repository, cd into its directory and run:
 
     pip install --upgrade seesaw
     ./get-wget-lua.sh
