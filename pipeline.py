@@ -58,8 +58,8 @@ if not WGET_LUA:
 #
 # Update this each time you make a non-cosmetic change.
 # It will be added to the WARC files and reported to the tracker.
-VERSION = '20180701.01'
-USER_AGENT = 'ArchiveTeam'
+VERSION = '20180701.02'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36'
 TRACKER_ID = '500px'
 TRACKER_HOST = 'tracker.archiveteam.org'
 
