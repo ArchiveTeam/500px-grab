@@ -172,13 +172,14 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     io.stdout:flush()
     os.execute("sleep 1")
     tries = tries + 1
-    if tries >= 20 then
+    if tries >= 5 then
       io.stdout:write("\nI give up...\n")
       io.stdout:flush()
       tries = 0
-      if allowed(url["url"], nil) or status_code == 500
+      if (allowed(url["url"], nil) or status_code == 500
           or string.match(url["url"], "^https?://[^/]*500px%.com/photo/[0-9]+")
-          or string.match(url["url"], "^https?://api%.500px%.com") then
+          or string.match(url["url"], "^https?://api%.500px%.com"))
+          and not item_type == 'photos' then
         return wget.actions.ABORT
       else
         return wget.actions.EXIT
